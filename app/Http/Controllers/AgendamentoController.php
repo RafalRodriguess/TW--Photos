@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Client; // Certifique-se de que o modelo Client está importado
-use App\Models\Agendamento; // Modelo para Agendamento
+use App\Models\Client; 
+use App\Models\Agendamento; 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -12,15 +12,15 @@ class AgendamentoController extends Controller
     // Método para exibir a lista de agendamentos
     public function index()
     {
-        $agendamentos = Agendamento::with('client')->get(); // Busca todos os agendamentos com os dados dos clientes
-        return view('agendamentos.index', compact('agendamentos')); // Retorna a view com os agendamentos
+        $agendamentos = Agendamento::with('client')->get(); 
+        return view('agendamentos.index', compact('agendamentos')); 
     }
 
     // Método para exibir a tela de criação do agendamento
     public function create()
     {
-        $clientes = Client::all(); // Busca todos os clientes
-        return view('agendamentos.create', compact('clientes')); // Retorna a view com os clientes
+        $clientes = Client::all();
+        return view('agendamentos.create', compact('clientes')); 
     }
 
     public function store(Request $request)

@@ -9,12 +9,13 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ImageSelectionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CalendarController;
-// Rota principal que exibe a página de login
+Use App\Http\Controllers\UserController;
+
 Route::get('/', function () {
     return view('auth.login');
 });
 
-// Rota para o Dashboard, agora com o controlador
+
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 // Rotas para clientes
@@ -95,6 +96,16 @@ Route::get('/calendar/index', [CalendarController::class, 'showCalendar'])->name
 Route::get('/calendar/events', [CalendarController::class, 'getGoogleCalendarEvents'])->name('calendar.events');
 Route::post('/calendar/events', [CalendarController::class, 'createGoogleCalendarEvent'])->name('calendar.createEvent');
 Route::delete('/calendar/events/{id}', [CalendarController::class, 'destroy'])->name('calendar.destroy');
+
+
+// Rotas para Usuários
+Route::get('/usuarios/criar', [UserController::class, 'create'])->name('usuarios.create'); 
+Route::get('/usuarios/index', [UserController::class, 'index'])->name('usuarios.index'); 
+Route::get('/usuarios/show/{id}', [UserController::class, 'show'])->name('usuarios.show');
+Route::get('/usuarios/{id}/edit', [UserController::class, 'edit'])->name('usuarios.edit'); 
+Route::put('/usuarios/{id}', [UserController::class, 'update'])->name('usuarios.update');  
+Route::delete('/usuarios/{id}', [UserController::class, 'destroy'])->name('usuarios.destroy');
+Route::post('/usuarios', [UserController::class, 'store'])->name('usuarios.store');
 
 // Rotas para o perfil, acessíveis apenas para usuários autenticados
 Route::middleware('auth')->group(function () {

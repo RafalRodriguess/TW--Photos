@@ -76,3 +76,6 @@
   </div>
 </div>
 @endsection
+
+@extends('layouts.master')
+
