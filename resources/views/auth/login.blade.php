@@ -8,7 +8,7 @@
       <div class="card">
         <div class="row">
           <div class="col-md-4 pe-md-0">
-            <div class="auth-side-wrapper" style="background-image: url({{ asset('img/BANNER.png') }})">
+            <div class="auth-side-wrapper" style="background-image: url({{ asset('img/bannernovo.png') }})">
 
             </div>
           </div>
@@ -36,8 +36,7 @@
                   <button type="submit" class="btn btn-primary me-2 mb-2 mb-md-0">Entrar</button>
                  
                 </div>
-                <a href="{{ url('/auth/register') }}" class="d-block mt-3 text-muted">Não é um usuário? Cadastre-se</a>
-              </form>
+               
             </div>
           </div>
         </div>

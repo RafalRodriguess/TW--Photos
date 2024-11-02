@@ -14,10 +14,10 @@ License: For each use you must have a valid license purchased only from above li
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="description" content="Responsive Laravel Admin Dashboard Template based on Bootstrap 5">
-	<meta name="author" content="NobleUI">
+	<meta name="author" content="Tw-Photos">
 	<meta name="keywords" content="nobleui, bootstrap, bootstrap 5, bootstrap5, admin, dashboard, template, responsive, css, sass, html, laravel, theme, front-end, ui kit, web">
 
-  <title>NobleUI - Laravel Admin Dashboard Template</title>
+  <title>TW- Photos</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,7 +28,7 @@ License: For each use you must have a valid license purchased only from above li
   <!-- CSRF Token -->
   <meta name="_token" content="{{ csrf_token() }}">
   
-  <link rel="shortcut icon" href="{{ asset('/favicon.ico') }}">
+  <link rel="shortcut icon" href="{{ asset('/bannernovo.png') }}">
 
   <!-- plugin css -->
   <link href="{{ asset('assets/fonts/feather-font/css/iconfont.css') }}" rel="stylesheet" />

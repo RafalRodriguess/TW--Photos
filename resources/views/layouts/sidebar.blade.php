@@ -88,8 +88,8 @@
 
 
 
-      <!-- Seção Agendamentos -->
-      <li class="nav-item nav-category">Agendamentos</li>
+      <!-- Seção Agendamentos 
+      <li class="nav-item nav-category">Agenda</li>
       <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#agendamentos" role="button" aria-expanded="false" aria-controls="agendamentos">
           <i class="link-icon" data-feather="calendar"></i>
@@ -106,7 +106,25 @@
             </li>
           </ul>
         </div>
+      </li>-->
+
+ <!-- Seção Agendamentos -->
+      <li class="nav-item nav-category">Usuarios</li>
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#usuarios" role="button" aria-expanded="false" aria-controls="Usuarios">
+          <i class="link-icon" data-feather="calendar"></i>
+          <span class="link-title">Usuarios</span>
+          <i class="link-arrow" data-feather="chevron-down"></i>
+        </a>
+        <div class="collapse" id="Usuarios">
+          <ul class="nav sub-menu">
+            <li class="nav-item">
+              <a href="{{ route('usuarios.index') }}" class="nav-link">Ver Usuarios</a>
+            </li>
+          </ul>
+        </div>
       </li>
+
     </ul>
   </div>
 </nav>

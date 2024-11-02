@@ -52,7 +52,7 @@ class LoginController extends Controller
     {
         Auth::logout();
 
-        return redirect('/'); // Redirecionar para a página inicial
+        return redirect('/'); 
     }
     public function store(Request $request): RedirectResponse
 {
