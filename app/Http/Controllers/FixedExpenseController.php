@@ -76,4 +76,20 @@ class FixedExpenseController extends Controller
 
         return redirect()->route('financeiro.contas.index')->with('success', 'Conta marcada como paga e nova conta criada para o próximo mês.');
     }
+
+
+    public function destroy($id)
+    {
+        // Encontra a despesa fixa pelo ID
+        $fixedExpense = FixedExpense::findOrFail($id);
+
+        // Exclui a despesa fixa
+        $fixedExpense->delete();
+
+        // Redireciona com uma mensagem de sucesso
+        return redirect()->route('financeiro.contas.index')->with('message', [
+            'type' => 'success',
+            'content' => 'Despesa fixa excluída com sucesso!'
+        ]);
+    }
 }

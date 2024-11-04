@@ -87,8 +87,8 @@
               <img class="wd-80 ht-80 rounded-circle" src="{{ url('https://via.placeholder.com/80x80') }}" alt="">
             </div>
             <div class="text-center">
-  <p class="tx-16 fw-bolder">{{ Auth::user()->name }}</p>
-  <p class="tx-12 text-muted">{{ Auth::user()->email }}</p>
+  <p class="tx-16 fw-bolder"></p>
+  <p class="tx-12 text-muted"></p>
 </div>
 </div>
 <ul class="list-unstyled p-1">

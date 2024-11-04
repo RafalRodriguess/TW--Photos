@@ -11,7 +11,11 @@
     <li class="breadcrumb-item active" aria-current="page">Listagem de Usuários</li>
   </ol>
 </nav>
-@section('content')
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h6 class="card-title">Listagem de Usuarios</h6>
+  <a href="{{ route('usuarios.create') }}" class="btn btn-primary">+ Criar Novo Usuario</a>
+</div>
+
 <div class="row">
   <div class="col-md-12">
     @if(session('success'))
