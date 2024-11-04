@@ -7,16 +7,14 @@
 @section('content')
 <nav class="page-breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">Financeiro</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Listagem de Entradas</li>
+    <li class="breadcrumb-item"><a href="#">Termos</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Listagem de Termos</li>
   </ol>
 </nav>
-
 <div class="d-flex justify-content-between align-items-center mb-3">
-  <h5 class="card-title font-weight-bold">Listagem de Entradas</h5>
-  <a href="{{ route('financeiro.entrada.create') }}" class="btn btn-primary">+ Criar Nova Entrada</a>
+  <h6 class="card-title">Listagem de Termos</h6>
+  <a href="{{ route('terms.create') }}" class="btn btn-primary">+ Criar Novo Termo</a>
 </div>
-
 <div class="row">
   <div class="col-md-12">
     @if(session('success'))
@@ -39,41 +37,37 @@
   <div class="col-md-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-        <p class="text-muted mb-3">Abaixo está a listagem das entradas financeiras registradas. Você pode visualizar ou baixar o comprovante de cada entrada.</p>
+        <h6 class="card-title">Listagem de Termos</h6>
+        <p class="text-muted mb-3">Abaixo está a listagem dos termos cadastrados, com a opção de visualização e exclusão.</p>
+        
         <div class="table-responsive">
           <table id="dataTableExample" class="table">
             <thead>
               <tr>
                 <th>Cliente</th>
-                <th>Nome</th>
-                <th>Valor (€)</th>
-                <th>Data</th>
-                <th>Comprovante</th>
+                <th>Data do Termo</th>
+                <th>Descrição</th>
                 <th>Ações</th>
               </tr>
             </thead>
             <tbody>
-              @foreach($entradas as $entrada)
+              @foreach($terms as $term)
                 <tr>
-                  <td>{{ $entrada->client->name ?? 'N/A' }}</td>
-                  <td>{{ $entrada->description }}</td>
-                  <td>{{ number_format($entrada->amount, 2, ',', '.') }}</td>
-                  <td>{{ $entrada->created_at->format('d/m/Y') }}</td>
+                  <td>{{ $term->client->name }}</td>
+                  <td>{{ $term->term_date }}</td>
+                  <td>{{ Str::limit($term->description, 50) }}</td>
                   <td>
-                    @if($entrada->proof)
-                      <a href="{{ asset('storage/' . $entrada->proof) }}" class="btn btn-info btn-sm" target="_blank">
-                        <i class="fas fa-download"></i> Baixar Comprovante
-                      </a>
-                    @else
-                      <span class="text-muted">Nenhum comprovante</span>
-                    @endif
-                  </td>
-                  <td>
-                    <a href="{{ route('financeiro.entrada.edit', $entrada->id) }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Editar</a>
-                    <form action="{{ route('financeiro.entrada.destroy', $entrada->id) }}" method="POST" style="display:inline-block;">
+                    <!-- Botão para visualizar o termo -->
+                    <a href="{{ route('terms.show', $term->id) }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i> Ver</a>
+
+                    <!-- Botão para gerar PDF -->
+                    <a href="{{ route('terms.generatePDF', $term->id) }}" class="btn btn-secondary btn-sm"><i class="fas fa-file-pdf"></i> PDF</a>
+
+                    <!-- Botão para excluir o termo -->
+                    <form action="{{ route('terms.destroy', $term->id) }}" method="POST" style="display:inline-block;">
                       @csrf
                       @method('DELETE')
-                      <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir esta entrada?')">
+                      <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir este termo?')">
                         <i class="fas fa-trash-alt"></i> Excluir
                       </button>
                     </form>
@@ -104,13 +98,13 @@
             "previous": "Anterior",
             "next": "Próximo"
           },
-          "emptyTable": "Nenhuma entrada disponível",
-          "info": "Mostrando _START_ até _END_ de _TOTAL_ entradas",
-          "infoEmpty": "Mostrando 0 até 0 de 0 entradas",
-          "lengthMenu": "Mostrar _MENU_ entradas por página",
+          "emptyTable": "Nenhum termo disponível",
+          "info": "Mostrando _START_ até _END_ de _TOTAL_ termos",
+          "infoEmpty": "Mostrando 0 até 0 de 0 termos",
+          "lengthMenu": "Mostrar _MENU_ termos por página",
           "search": "Buscar:",
-          "zeroRecords": "Nenhuma entrada encontrada",
-          "infoFiltered": "(filtrado de _MAX_ entradas no total)"
+          "zeroRecords": "Nenhum termo encontrado",
+          "infoFiltered": "(filtrado de _MAX_ termos no total)"
         }
       });
     });

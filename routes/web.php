@@ -10,6 +10,7 @@ use App\Http\Controllers\ImageSelectionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CalendarController;
 Use App\Http\Controllers\UserController;
+use App\Http\Controllers\TermController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -100,12 +101,20 @@ Route::delete('/calendar/events/{id}', [CalendarController::class, 'destroy'])->
 
 // Rotas para Usuários
 Route::get('/usuarios/criar', [UserController::class, 'create'])->name('usuarios.create'); 
-Route::get('/usuarios/index', [UserController::class, 'index'])->name('usuarios.index'); 
+Route::get('/usuarios', [UserController::class, 'index'])->name('usuarios.index'); 
 Route::get('/usuarios/show/{id}', [UserController::class, 'show'])->name('usuarios.show');
 Route::get('/usuarios/{id}/edit', [UserController::class, 'edit'])->name('usuarios.edit'); 
 Route::put('/usuarios/{id}', [UserController::class, 'update'])->name('usuarios.update');  
 Route::delete('/usuarios/{id}', [UserController::class, 'destroy'])->name('usuarios.destroy');
 Route::post('/usuarios', [UserController::class, 'store'])->name('usuarios.store');
+
+
+
+//Rotas para Termos
+Route::get('/terms/create', [TermController::class, 'create'])->name('terms.create'); 
+Route::resource('terms', TermController::class);
+Route::get('terms/{id}/generatePDF', [TermController::class, 'generatePDF'])->name('terms.generatePDF');
+Route::delete('/terms/{id}', [TermController::class, 'destroy'])->name('terms.destroy');
 
 // Rotas para o perfil, acessíveis apenas para usuários autenticados
 Route::middleware('auth')->group(function () {

@@ -13,6 +13,29 @@
     <li class="breadcrumb-item active" aria-current="page">Listagem de Trabalhos</li>
   </ol>
 </nav>
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h6 class="card-title">Listagem de Usuarios</h6>
+  <a href="{{ route('trabalhos.create') }}" class="btn btn-primary">+ Criar Novo Trabalho</a>
+</div>
+
+
+<div class="row">
+  <div class="col-md-12">
+    @if(session('success'))
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    @endif
+
+    @if(session('error'))
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    @endif
+  </div>
+</div>
 
 <div class="row">
   <div class="col-md-12 grid-margin stretch-card">
