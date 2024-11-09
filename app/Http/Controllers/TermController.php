@@ -1,10 +1,10 @@
 <?php
 namespace App\Http\Controllers;
-
+use App\Models\Log;
 use App\Models\Term;
 use App\Models\Client;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+
 use PDF;
 
 class TermController extends Controller
@@ -23,7 +23,7 @@ class TermController extends Controller
 
     public function store(Request $request)
     {
-        Log::info('Dados recebidos para criação do termo:', $request->all());
+       
         $request->validate([
             'client_id' => 'required|exists:clients,id',
             'term_date' => 'required|date',
@@ -31,7 +31,14 @@ class TermController extends Controller
             'purpose' => 'required|string'
         ]);
 
+      
         Term::create($request->all());
+        
+        Log::create([
+            'user_id' => auth()->id(),
+            'action' => 'create_term',
+            'description' => 'Criou o Termo: ' . $id
+        ]);
         return redirect()->route('terms.index')->with('success', 'Termo de uso criado com sucesso!');
     }
 
@@ -43,11 +50,16 @@ class TermController extends Controller
     public function destroy($id)
 {
     $term = Term::findOrFail($id);
-
-    // Exclui o termo
+   Log::create([
+            'user_id' => auth()->id(),
+            'action' => 'delete_term',
+            'description' => 'Deletou o Termo: ' . $term->description
+        ]);
+    
     $term->delete();
 
-    // Redireciona para a listagem de termos com uma mensagem de sucesso
+    
+
     return redirect()->route('terms.index')->with('success', 'Termo excluído com sucesso!');
 }
 

@@ -19,8 +19,8 @@
             </div><!-- Col -->
             <div class="col-sm-6">
               <div class="mb-3">
-                <label class="form-label">Email</label>
-                <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Digite o email" required>
+                <label class="form-label">Email (Opcional)</label>
+                <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Digite o email">
               </div>
             </div><!-- Col -->
           </div><!-- Row -->
@@ -28,43 +28,25 @@
           <!-- Segunda linha: País e Telefone -->
           <div class="row">
             <div class="col-sm-6">
+             
+              <div class="col-sm-12">
               <div class="mb-3">
-                <label class="form-label">País</label>
-                <select class="form-control" name="country">
-                  <option value="">Selecione o país</option>
-                  <option value="Brasil">Brasil</option>
-                  <option value="Portugal">Portugal</option>
-                  <option value="Estados Unidos">Estados Unidos</option>
-                  <!-- Adicione mais opções conforme necessário -->
-                </select>
+                <label class="form-label">Contribuinte (Opcional)</label>
+                <input type="text" class="form-control" name="contributor" value="{{ old('contributor') }}" placeholder="Digite o número de contribuinte">
               </div>
+            </div><!-- Col -->
             </div><!-- Col -->
             <div class="col-sm-6">
               <div class="mb-3">
                 <label class="form-label">Telefone</label>
-                <input type="text" class="form-control" name="phone" value="{{ old('phone') }}" placeholder="Digite o telefone" required>
-              </div>
-            </div><!-- Col -->
-          </div><!-- Row -->
-
-          <!-- Terceira linha: Endereço -->
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="mb-3">
-                <label class="form-label">Endereço</label>
-                <input type="text" class="form-control" name="address" value="{{ old('address') }}" placeholder="Digite o endereço">
+                <input type="text" class="form-control" name="phone" value="{{ old('phone') }}" placeholder="Digite o telemovel (+351)" required>
               </div>
             </div><!-- Col -->
           </div><!-- Row -->
 
           <!-- Quarta linha: Contribuinte -->
           <div class="row">
-            <div class="col-sm-12">
-              <div class="mb-3">
-                <label class="form-label">Contribuinte (Opcional)</label>
-                <input type="text" class="form-control" name="contributor" value="{{ old('contributor') }}" placeholder="Digite o número de contribuinte">
-              </div>
-            </div><!-- Col -->
+            
           </div><!-- Row -->
 
           <!-- Botão de submit -->

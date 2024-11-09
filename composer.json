@@ -10,6 +10,7 @@
     "require": {
         "php": "^8.0",
         "barryvdh/laravel-dompdf": "^3.0",
+        "carbonphp/carbon-doctrine-types": "^3.2",
         "google/apiclient": "^2.18",
         "guzzlehttp/guzzle": "^7.2",
         "inertiajs/inertia-laravel": "^0.6.3",
