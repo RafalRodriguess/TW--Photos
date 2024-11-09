@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CalendarController;
 Use App\Http\Controllers\UserController;
 use App\Http\Controllers\TermController;
+use App\Http\Controllers\LogController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -69,6 +70,10 @@ Route::post('/financeiro/saida', [TransactionController::class, 'saidaStore'])->
 Route::get('/financeiro/saida/{id}/edit', [TransactionController::class, 'saidaEdit'])->name('financeiro.saida.edit');
 Route::put('/financeiro/saida/{id}', [TransactionController::class, 'saidaUpdate'])->name('financeiro.saida.update');
 Route::delete('/financeiro/saida/{id}', [TransactionController::class, 'saidaDestroy'])->name('financeiro.saida.destroy');
+
+Route::get('/logs', [LogController::class, 'index'])->name('logs.index');
+
+
 
 //Contas Fixas
 Route::prefix('financeiro/contas')->group(function () {

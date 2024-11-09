@@ -70,7 +70,14 @@
           <span class="link-title">Listagem de Termos</span>
         </a>
       </li>
-
+    <!-- Seção Termos -->
+    <li class="nav-item nav-category" style="font-weight: bold; font-size: 16px;">Logs</li>
+      <li class="nav-item">
+        <a href="{{ route('logs.index') }}" class="nav-link">
+          <i class="link-icon" data-feather="info"></i>
+          <span class="link-title">Listagem Logs</span>
+        </a>
+      </li>
 
     </ul>
   </div>

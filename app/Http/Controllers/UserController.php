@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Log;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -21,30 +21,36 @@ class UserController extends Controller
         return view('usuarios.create'); 
     }
 
-    // Método para processar o formulário de criação e salvar o usuário
+ 
     public function store(Request $request)
     {
-        // Validação dos dados do formulário
+        
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
-        // Criação do usuário
+        
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
 
-        // Redireciona ou exibe uma mensagem de sucesso
+        Log::create([
+            'user_id' => auth()->id(),
+            'action' => 'create_user',
+            'description' => 'Usuario criado: ' . $request->input('name')
+        ]);
+
+        
         return redirect()->route('usuarios.index')->with('success', 'Usuário cadastrado com sucesso!');
     }
 
     public function show($id)
     {
-        $user = User::findOrFail($id); // Busca o usuário pelo ID ou retorna um erro 404 se não for encontrado
+        $user = User::findOrFail($id); 
         return view('usuarios.show', compact('user'));
     }
 
@@ -52,6 +58,9 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
+
+     
+
         return view('usuarios.edit', compact('user'));
     }
     
@@ -76,7 +85,14 @@ class UserController extends Controller
     
         $usuarios->save();
     
-        // Redireciona de volta para a listagem de clientes com uma mensagem de sucesso
+        Log::create([
+            'user_id' => auth()->id(),
+            'action' => 'edit_user',
+            'description' => 'Usuário editado: ' . $usuarios->name
+        ]);
+
+
+       
         return redirect()->route('usuarios.index')->with('success', 'Usuario atualizado com sucesso!');
     }
 
@@ -88,6 +104,11 @@ public function destroy($id)
         
         $usuarios->delete();
 
+        Log::create([
+            'user_id' => auth()->id(),
+            'action' => 'delete_user',
+            'description' => 'Usuário deletado: ' . $usuarios->name
+        ]);
         
         return redirect()->route('usuarios.index')->with('success', 'Usuario excluído com sucesso!');
     }

@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('terms', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('client_id'); // ID do cliente relacionado
-            $table->date('term_date'); // Data do termo
-            $table->text('description'); // Descrição interna do termo
-            $table->string('purpose'); // Finalidade do termo (ex: Marketing, Instagram)
+            $table->unsignedBigInteger('client_id'); 
+            $table->date('term_date'); 
+            $table->text('description'); 
+            $table->string('purpose'); 
             $table->timestamps();
     
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');

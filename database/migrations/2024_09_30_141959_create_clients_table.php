@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email')->nullable();
             $table->string('phone')->nullable();
-            $table->string('country')->nullable();       // País do cliente
-            $table->string('address')->nullable();       // Endereço do cliente
-            $table->string('contributor')->nullable();   // Contribuinte (opcional)
+            $table->string('country')->nullable();
+            $table->string('address')->nullable(); 
+            $table->string('contributor')->nullable();  
             $table->timestamps();
         });
     }
